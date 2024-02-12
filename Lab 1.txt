@@ -1,0 +1,40 @@
+.data
+    .dword 1000, 1001, 1002, 1003, 1004, 1005, 1006, 1007, 1008, 1009
+.text
+    lui x3, 0x10000 
+    ld x10, 0(x3) # x10 = 1000 (cumulative sum)
+    ld x2, 8(x3)  # x2 = 1001
+    add x10, x10, x2
+    ld x2, 16(x3)
+    add x10, x10, x2
+    ld x2, 24(x3)
+    add x10, x10, x2
+    ld x2, 32(x3)
+    add x10, x10, x2
+    ld x2, 40(x3)
+    add x10, x10, x2
+    ld x2, 48(x3)
+    add x10, x10, x2
+    ld x2, 56(x3)
+    add x10, x10, x2
+    ld x2, 64(x3)
+    add x10, x10, x2
+    ld x2, 72(x3)
+    add x10, x10, x2
+
+.data
+L1: .word 0                     #This location indicates the error of the result. It is 0 if no error else 1.
+.word 2 2        # x and y dimensions of MATRIX-1
+.word -1 4 2 3 # <VALUES OF THE MATRIX-1 are present here consecutively, in a row-major order>
+
+.word 2 2         # x and y dimensions of MATRIX-2
+.word 9 -3 6 1 # <VALUES OF THE MATRIX-2 are present here consecutively, in a row-major order>
+
+# .word D3x D3y         #values to be written by the program
+# .word <VALUES OF THE MATRIX-3 (product matrix) should be written by the program here consecutively, in a row-major order>
+
+.text
+main:
+    la x3, L1  
+    ld x4, 0(x3)
+    ld x5, 2(x3)

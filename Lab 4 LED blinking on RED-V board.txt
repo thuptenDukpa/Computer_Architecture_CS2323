@@ -1,0 +1,39 @@
+.section .data             # (instead of .data in Ripes)
+L1: .word 1000000 #delay count to be loaded from memory
+
+.section .text
+.global main   # (add this to indicate main is a global function, need not be there in Ripes)
+main:
+la a7, L1          #this will load the ADDRESS of the data section in a7
+
+#Thupten Dukpa ES20BTECH11029
+# Ram Nayak    CS16BTECH11008
+
+addi s1, x0, 0
+addi s2, x0, 0x00000020
+
+li a1, 0x10012004
+sw s1, 0(a1) #turn off
+
+
+li a2, 0x10012008
+sw s2, 0(a2) #glow
+
+li a3, 0x1001200C
+
+glow:   sw s2, 0(a3)
+        addi a6, x0, 1
+
+glowDelay:  bgt a6, a4, delay
+            addi a6, a6, 1
+            jal x0, glowDelay
+
+delay:  lw a4 , 0(a7)
+        addi a5, x0, 1
+        sw s1, 0(a3)
+
+loop:   bgt a5, a4, glow
+        addi a5, a5, 1
+        jal x0, loop
+
+

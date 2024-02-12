@@ -1,0 +1,49 @@
+.data
+    .dword 6
+    
+.text
+    # loading 'n' into x1
+    lui x1, 0x10000 
+    ld x1, 0(x1)
+    
+    # using x2 as iteration variable 'i'
+    addi x2, x0, 1
+    
+    # loading reference of target address into x3
+    lui x5, 0x10000
+    addi x3, x5, 0x100
+    
+    # x6 is used to store squares in each iteration
+    # x7 is used to store the sum of squares
+    add x6, x0, x0
+    add x7, x0, x0
+    
+    # loop exits if i > n
+L1: bgt x2, x1, L2
+
+    # calculating and storing (2n - 1) into x4 for current iteration
+    add x4, x2, x2
+    addi x4, x4, -1
+    
+    # calculating the current iteration square by adding previous square to x4
+    add x6, x6, x4
+    
+    # storing sum
+    add x7, x7, x6
+    
+    # storing square into memory location x3 and incrementing x3 by 8
+    sd x6, 0(x3)
+    addi x3, x3, 0x8
+    
+    # incrementing iteration variable
+    addi x2, x2, 1
+    beq x0, x0, L1
+    
+L2: # storing sum of squares into desired memory address
+    lui x8, 0x10000
+    addi x8, x8, 0x10
+    sd x7, 0(x8)
+
+    
+
+ 

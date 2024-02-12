@@ -1,0 +1,44 @@
+jal x0, L1
+add x3, x4, x7
+beq x4, x7, L2
+L1: jal x0, L2
+sd x5, 12(x6)
+lui x9, 0x10000
+L2: addi x9, x10, 12
+sub x8, x9, x10
+xor x1, x2, x3
+or x12, x18, x31
+sll x16, x23, x24
+srl x2, x9, x20
+sra x24, x1, x2
+addi x8, x18, -28
+xori x8, x9, 5
+ori x17, x30, 3
+andi x11, x15, -7
+slli x8, x9, 5
+srli x17, x30, 3
+srai x1, x2, 8
+lb x14, 8(x2)
+lh x15, 9(x4)
+lw x16, 10(x6)
+lbu x17, 11(x5)
+lhu x18, 12(x7)
+sb x25, 0(x26)
+sh x27, 4(x28)
+sw x14, 8(x2)
+beq x19, x10, -4
+bne x20, x0, L4
+jalr x27, x31, 8
+L4: lui x10, 0x87654
+L5: addi x10, x10, 801
+Error in instruction 12356789
+Error in instruction 678
+lui x20, 0x10000
+lw x20, 0(x20)
+jal x1, L6
+jal x0, L7
+L6: addi x2, x2, -8
+sw x9, 0(x2)
+addi x10, x0, 1
+addi x9, x0, 2
+L7: addi x0, x0, 0
